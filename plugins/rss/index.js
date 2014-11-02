@@ -1,9 +1,11 @@
 console.log("PLUGIN: RSS loaded");
 
+var utils = require('../../lib/utils');
+
 var color = require('irc-colors');
+var timer = 3;
 
-module.exports = function (client, config) {
-
+function init(client, config) {
     var status = true; // online/offline = true/false
     var limit = 1;
     var maxLimit = config.plugins.rss.limit || 42;
@@ -38,18 +40,26 @@ module.exports = function (client, config) {
 
     client.addListener('ping', function (raw) {
 
-        console.log("RSS: pinged", raw);
+        console.log("RSS: pinged", raw, "Timer:", timer);
+        if (timer) {
+            timer -= 1;
+            return;
+        }
+        timer = 10;
 
         config.plugins.rss.feeds.forEach(function (feed) {
+            console.log("FEED IMPOR:", feed);
             emitter.import(feed);
         });
     });
 
     client.addListener('message', function (nick, to, message, raw) {
 
-        var cmdline = message.split(' ').filter(function (el) {
-            return el.length > 0;
-        });
+        var cmdline = utils.filterCommands(message);
+
+        // if (!utils.isCmd('!meetup', cmdline)) {
+        //     return;
+        // }
 
         if (cmdline[0].toLowerCase() !== '!rss' ||
             nick.toLowerCase() === config.irc.nickname.toLowerCase() ||
@@ -63,9 +73,7 @@ module.exports = function (client, config) {
             return;
         }
 
-        if (to.toLowerCase() === config.irc.nickname.toLowerCase()) {
-
-            // bot got the message
+        if (utils.isBotMessage(to, config)) {
             to = nick;
         }
 
@@ -125,6 +133,12 @@ module.exports = function (client, config) {
     });
 }
 
+function help() {
+    return (
+        color.green('HELP: rss')
+    );
+}
+
 function printStatus(client, to, status) {
 
     client.say(to, color.green('RSS: ') + (status ? color.red('ON') : color.blue('OFF')));
@@ -135,4 +149,9 @@ function sendMessage(client, to, item) {
 
     client.say(to, color.green('RSS: ') + color.brown(item.title) + ' --- ' + item.link);
     console.log('RSS: sendMessage:', to, item.title);
+}
+
+module.exports = {
+    init: init,
+    help: help
 }
