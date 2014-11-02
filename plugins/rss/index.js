@@ -5,7 +5,9 @@ var utils = require('../../lib/utils');
 var color = require('irc-colors');
 
 function init(client, config) {
+
     var status = true; // online/offline = true/false
+
     var timer = 0;
 
     var limit = 1;
@@ -49,7 +51,7 @@ function init(client, config) {
         timer = 7;
 
         config.plugins.rss.feeds.forEach(function (feed) {
-            console.log("FEED IMPOR:", feed);
+            console.log("FEED IMPORT(cron):", feed);
             emitter.import(feed);
         });
     });
@@ -92,7 +94,7 @@ function init(client, config) {
 
                 config.plugins.rss.feeds.forEach(function (feed) {
 
-                    //console.log('RSS: import', feed);
+                    console.log("FEED IMPORT:", feed);
                     emitter.import(feed);
                 });
 
