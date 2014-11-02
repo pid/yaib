@@ -22,6 +22,7 @@ function help() {
     return (
         color.bold.red.bgyellow('===================================================\n') +
         color.bold.red.bgyellow('HELLO Plugin\n') +
+        color.bold.red.bgyellow('===================================================\n') +
         color.bold.red.bgyellow('Output welcome message when user joins the channel\n') +
         color.bold.red.bgyellow('===================================================')
     );
