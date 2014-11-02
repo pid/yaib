@@ -6,12 +6,16 @@ var color = require('irc-colors');
 var request = require('request');
 
 var api_key = process.env.IRCBOT_MEETUP_API_KEY || '';
+var groupname = process.env.IRCBOT_MEETUP_GROUPNAME || '';
 
 var url = 'https://api.meetup.com/2/events?key=' +
     api_key +
-    '&group_urlname=stuttgartjs&sign=true';
+    '&group_urlname=' +
+    groupname +
+    '&sign=true';
 
 !!api_key || console.log('WARNING: IRCBOT_MEETUP_API_KEY missing - set -x IRCBOT_MEETUP_API_KEY "CHANGE_IT"');
+!!groupname || console.log('WARNING: IRCBOT_MEETUP_GROUPNAME missing - set -x IRCBOT_MEETUP_GROUPNAME "CHANGE_IT"');
 
 function init(client, config) {
 
