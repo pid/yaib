@@ -35,6 +35,14 @@ Output welcome message when user joins the channel
 $ set IRCBOT_MEETUP_API_KEY "CHANGE_IT"
 ```
 
+### Urls
+
+Save URLs from channel messages
+
 ### Help
 
 Output help :-)
+
+### Debug
+
+Only for dev
