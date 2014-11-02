@@ -1,5 +1,7 @@
-ircbot
-------
+IRCBOT
+======
+
+Yet another Ircbot
 
 Installation
 ============
