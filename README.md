@@ -2,7 +2,7 @@ ircbot
 ------
 
 Installation
-------------
+============
 
 ```
 $ git clone ....
@@ -15,23 +15,24 @@ $ set IRCBOT_NICKSERV "nickserv-password"
 ```
 
 Plugins
--------
+=======
 
-RSS Feeds
-=========
+### RSS Feeds
 
 !rss : print status (ON or OFF) !rss on : activate channel news posting !rss off : deactivate channel news posting !rss lastest : get latest news !rss lastest 5 : get the 5 latest news !rss feeds : list all feeds
 
-Hello
-=====
+### Hello
 
 Output welcome message when user joins the channel
 
-Meetup
-======
+### Meetup
 
 !meetup : Output info for next StuttgartJS Meetup
 
 ```
 $ set IRCBOT_MEETUP_API_KEY "CHANGE_IT"
 ```
+
+### Help
+
+Output help :-)
