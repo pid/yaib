@@ -31,8 +31,8 @@ function init(client, config) {
         } else {
 
             client.say(nick,
-                color.bold.red.bgyellow('=============================') +
-                color.bold.red.bgyellow('!help : All ircbot functions') +
+                color.bold.red.bgyellow('=============================\n') +
+                color.bold.red.bgyellow('!help : All ircbot functions\n') +
                 color.bold.red.bgyellow('=============================')
             );
 
@@ -53,10 +53,10 @@ function init(client, config) {
 
 function help() {
     return (
-        color.bold.red.bgyellow('===================================================') +
-        color.bold.red.bgyellow('Help Plugin') +
-        color.bold.red.bgyellow('===================================================') +
-        color.bold.red.bgyellow('!help : list all plugins') +
+        color.bold.red.bgyellow('===================================================\n') +
+        color.bold.red.bgyellow('Help Plugin\n') +
+        color.bold.red.bgyellow('===================================================\n') +
+        color.bold.red.bgyellow('!help : list all plugins\n') +
         color.bold.red.bgyellow('===================================================')
     );
 }

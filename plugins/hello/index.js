@@ -20,9 +20,9 @@ function init(client, config) {
 
 function help() {
     return (
-        color.bold.red.bgyellow('===================================================') +
-        color.bold.red.bgyellow('Hellp Plugin') +
-        color.bold.red.bgyellow('Output welcome message when user joins the channel') +
+        color.bold.red.bgyellow('===================================================\n') +
+        color.bold.red.bgyellow('Hello Plugin\n') +
+        color.bold.red.bgyellow('Output welcome message when user joins the channel\n') +
         color.bold.red.bgyellow('===================================================')
     );
 }
