@@ -54,7 +54,7 @@ function init(client, config) {
 function help() {
     return (
         color.bold.red.bgyellow('===================================================\n') +
-        color.bold.red.bgyellow('Help Plugin\n') +
+        color.bold.red.bgyellow('HELP Plugin\n') +
         color.bold.red.bgyellow('===================================================\n') +
         color.bold.red.bgyellow('!help : list all plugins\n') +
         color.bold.red.bgyellow('===================================================')

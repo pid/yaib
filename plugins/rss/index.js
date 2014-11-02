@@ -46,7 +46,7 @@ function init(client, config) {
             timer -= 1;
             return;
         }
-        timer = 10;
+        timer = 7;
 
         config.plugins.rss.feeds.forEach(function (feed) {
             console.log("FEED IMPOR:", feed);
