@@ -7,24 +7,21 @@ function init(client, config) {
 
     client.addListener('join', function (channel, nick, raw) {
 
-        if (utils.isChannelMessage(nick, config)) {
-
-            // bot joins
-            client.say(channel, "Yeahh I'm in --- help?  message me '!help'");
-        } else {
+        if (!utils.isBotMessage(nick, config)) {
             client.say(channel,
                 config.plugins.hello.salutation + ' ' +
                 nick + '!  ' +
                 config.plugins.hello.message
             );
         }
-
     });
 
 };
 
-function help(client, to) {
-    client.say(to, color.green('HELP: hello'));
+function help() {
+    return (
+        color.green('HELP: hello')
+    );
 }
 
 module.exports = {
