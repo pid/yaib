@@ -27,6 +27,8 @@ function init(client, config) {
         }
 
         if (utils.isBotMessage(to, config)) {
+
+            maxLimit = 4242;
             to = nick;
         }
 
