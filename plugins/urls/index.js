@@ -78,7 +78,6 @@ function help() {
 function sendMessage(client, to, message) {
 
     client.say(to, color.blue('URL: ') + color.brown(message));
-    console.log('URLS: ', to, message);
 }
 
 module.exports = {
