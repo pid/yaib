@@ -24,6 +24,7 @@ module.exports = {
     },
     // all plugins are enabled by default
     plugins: {
+        debug: true,
         example: false, // disabled
         hello: {
             salutation: 'Welcome, ',
