@@ -14,8 +14,6 @@ function init(client, config) {
 
     client.addListener('message', function (nick, to, message, raw) {
 
-        console.log("URLS CMD:", nick, to, message, raw);
-
         var cmdline = utils.filterCommands(message);
         var maxLimit = 42;
         var limit;
