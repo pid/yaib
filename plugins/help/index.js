@@ -22,7 +22,6 @@ function init(client, config) {
         var cmdline = utils.filterCommands(message);
 
         if (!utils.isCmd('!help', cmdline)) {
-            console.log("EXIT");
             return;
         }
 
