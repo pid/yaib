@@ -30,9 +30,11 @@ module.exports = {
             message: 'Send "!help" to get help'
 
         }, // enabled
+        urls: true,
         rss: {
             // only activ in this channels
-            channels: ['#stuttgartjs-links', '#stuttgartjs'], // empty than all allowed
+            channels: ['#stuttgartjs', '#stuttgartjs-links'], // empty than all allowed
+            //channels: ['#stuttgartjs-links'], // empty than all allowed
             limit: 42, // limit for rss latest
             feeds: [
                 // echojs.com
