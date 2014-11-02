@@ -10,7 +10,7 @@ module.exports = {
             showErrors: false,
             autoRejoin: true,
             autoConnect: true,
-            channels: ['#stuttgartjs', '#stuttgartjs-links'],
+            channels: ['#stuttgartjs-links', '#stuttgartjs'],
             secure: true,
             selfSigned: false,
             certExpired: false,
@@ -25,7 +25,11 @@ module.exports = {
     // all plugins are enabled by default
     plugins: {
         example: false, // disabled
+        hello: {
+            salutation: 'Welcome, ',
+            message: 'Send "!help" to get help'
 
+        }, // enabled
         rss: {
             // only activ in this channels
             channels: ['#stuttgartjs-links', '#stuttgartjs'], // empty than all allowed
@@ -76,7 +80,9 @@ module.exports = {
                 // http://tympanus.net/codrops/
                 'http://feeds2.feedburner.com/tympanus',
                 //
-                'http://news.centurylinklabs.com/rss'
+                'http://news.centurylinklabs.com/rss',
+                //
+                'http://howtonode.org/feed.xml'
 
             ]
         }

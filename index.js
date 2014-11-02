@@ -11,7 +11,7 @@ var client = new irc.Client(
 );
 
 client.addListener('error', function (error) {
-    console.log('error: ', error);
+    console.error('error: ', error);
 });
 
 client.addListener('registered', function (raw) {
@@ -22,23 +22,13 @@ client.addListener('registered', function (raw) {
         console.log('WARNING: IRCBOT NICKSERV PASSWORD missing - set env IRCBOT_NICKSERV');
 });
 
-client.addListener('join', function (channel, nick, raw) {
-
-    //console.log('JOIN: ', raw);
-    if (nick.toLowerCase() === config.irc.nickname.toLowerCase()) {
-        // bot joins
-        client.say(channel, "Yeahh I'm in");
-    } else {
-        client.say(channel, 'Welcome, ' + nick);
-    }
-});
 
 // load plugins
 plugins.forEach(function (plugin) {
 
     if (config.plugins[plugin] !== false) {
-        require('./plugins/' + plugin)(client, config);
+        require('./plugins/' + plugin + '/').init(client, config);
     }
 
-    console.log("PLUGINS: loaded");
 });
+console.log("PLUGINS: loaded");
