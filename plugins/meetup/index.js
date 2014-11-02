@@ -61,7 +61,11 @@ function sendMessage(client, to, message) {
 
 function help() {
     return (
-        color.green('HELP: meetup')
+        color.bold.red.bgyellow('===================================================') +
+        color.bold.red.bgyellow('Meetup Plugin') +
+        color.bold.red.bgyellow('===================================================') +
+        color.bold.red.bgyellow('!meetup : Output info for next StuttgartJS Meetup') +
+        color.bold.red.bgyellow('===================================================')
     );
 }
 

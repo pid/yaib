@@ -3,10 +3,11 @@ console.log("PLUGIN: RSS loaded");
 var utils = require('../../lib/utils');
 
 var color = require('irc-colors');
-var timer = 3;
 
 function init(client, config) {
     var status = true; // online/offline = true/false
+    var timer = 0;
+
     var limit = 1;
     var maxLimit = config.plugins.rss.limit || 42;
 
@@ -40,7 +41,7 @@ function init(client, config) {
 
     client.addListener('ping', function (raw) {
 
-        console.log("RSS: pinged", raw, "Timer:", timer);
+        console.log("RSS: pinged", raw, "Timer:", timer, new Date(Date.now()));
         if (timer) {
             timer -= 1;
             return;
@@ -57,11 +58,7 @@ function init(client, config) {
 
         var cmdline = utils.filterCommands(message);
 
-        // if (!utils.isCmd('!meetup', cmdline)) {
-        //     return;
-        // }
-
-        if (cmdline[0].toLowerCase() !== '!rss' ||
+        if (!utils.isCmd('!rss', cmdline) ||
             nick.toLowerCase() === config.irc.nickname.toLowerCase() ||
             (config.plugins.rss.channels.length !== 0 &&
                 to[0] === '#' &&
@@ -69,7 +66,8 @@ function init(client, config) {
                     return el == to;
                 }))) {
 
-            console.log('RSS: command canceld (2)');
+            // console.log('RSS: command canceld (2)');
+
             return;
         }
 
@@ -80,6 +78,15 @@ function init(client, config) {
         console.log("RSS CMD:", nick, to, message, raw);
 
         switch (cmdline[1]) {
+
+            case 'feeds':
+
+                    config.plugins.rss.feeds.forEach(function (feed) {
+
+                        client.say(to, feed);
+                    });
+
+                    break;
 
             case 'import':
 
@@ -134,9 +141,20 @@ function init(client, config) {
 }
 
 function help() {
+
     return (
-        color.green('HELP: rss')
+        color.bold.red.bgyellow('===================================================') +
+        color.bold.red.bgyellow('RSS Plugin') +
+        color.bold.red.bgyellow('===================================================') +
+        color.bold.red.bgyellow('!rss : print status (ON or OFF)') +
+        color.bold.red.bgyellow('!rss on : activate channel news posting') +
+        color.bold.red.bgyellow('!rss off : deactivate channel news posting') +
+        color.bold.red.bgyellow('!rss lastest : get latest news') +
+        color.bold.red.bgyellow('!rss lastest 5 : get the 5 latest news') +
+        color.bold.red.bgyellow('!rss feeds : list all feeds') +
+        color.bold.red.bgyellow('===================================================')
     );
+
 }
 
 function printStatus(client, to, status) {

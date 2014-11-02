@@ -26,23 +26,38 @@ function init(client, config) {
             return;
         }
 
-        if (utils.isBotMessage(to, config)) {
-            to = nick;
-        }
-
-        if (cmdline.length > 1) {
-            client.say(to, helper[cmdline[1]]());
+        if (cmdline.length > 1 && helper[cmdline[1]]) {
+            client.say(nick, helper[cmdline[1]]());
         } else {
-            for (var key in helper) {
-                client.say(to, helper[key]());
-            }
+
+            client.say(nick,
+                color.bold.red.bgyellow('=============================') +
+                color.bold.red.bgyellow('!help : All ircbot functions') +
+                color.bold.red.bgyellow('=============================')
+            );
+
+            plugins.forEach(function (plugin) {
+
+                if (config.plugins[plugin] !== false) {
+                    client.say(nick, color.bold.red.bgyellow(
+                        '!help ' + plugin
+                    ));
+                }
+            });
+            client.say(nick, color.bold.red.bgyellow(
+                '============================='
+            ));
         }
     });
-}
+};
 
 function help() {
     return (
-        color.green('HELP: help')
+        color.bold.red.bgyellow('===================================================') +
+        color.bold.red.bgyellow('Help Plugin') +
+        color.bold.red.bgyellow('===================================================') +
+        color.bold.red.bgyellow('!help : list all plugins') +
+        color.bold.red.bgyellow('===================================================')
     );
 }
 
