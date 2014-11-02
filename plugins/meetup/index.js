@@ -1,5 +1,7 @@
 console.log("PLUGIN: MEETUP loaded");
 
+var utils = require('../../lib/utils');
+
 var color = require('irc-colors');
 var request = require('request');
 
@@ -11,42 +13,28 @@ var url = 'https://api.meetup.com/2/events?key=' +
 
 !!api_key || console.log('WARNING: IRCBOT_MEETUP_API_KEY missing - set -x IRCBOT_MEETUP_API_KEY "CHANGE_IT"');
 
-module.exports = function (client, config) {
+function init(client, config) {
 
     client.addListener('message', function (nick, to, message, raw) {
 
-        var cmdline = message.split(' ').filter(function (el) {
-            return el.length > 0;
-        });
+        var cmdline = utils.filterCommands(message);
 
-        if (cmdline[0].toLowerCase() !== '!meetup' ||
-            nick.toLowerCase() === config.irc.nickname.toLowerCase() ||
-            (config.plugins.rss.channels.length !== 0 &&
-                to[0] === '#' &&
-                !config.plugins.rss.channels.some(function (el) {
-                    return el == to;
-                }))) {
-
-            console.log('MEETUP: command canceld (2)');
+        if (!utils.isCmd('!meetup', cmdline)) {
             return;
         }
-
-        if (to.toLowerCase() === config.irc.nickname.toLowerCase()) {
-
-            // bot got the message
+        if (utils.isBotMessage(to, config)) {
             to = nick;
         }
 
-        console.log("MEETUP CMD:", nick, to, message, raw);
+        !!process.env.IRCBOT_DEBUG && console.log("MEETUP CMD:", nick, to, message, raw);
 
         request(url, function (error, response, body) {
 
-            //console.log("ERROR:", error);
+            !!process.env.IRCBOT_DEBUG && console.log("ERROR:", error);
 
             if (!error && response.statusCode == 200) {
 
                 var item = JSON.parse(body).results[0];
-                //console.log(item);
 
                 var d = (new Date(item.time) + '').split(' ');
                 var date = [d[2], d[1], d[3], d[4]].join(' ');
@@ -69,4 +57,15 @@ function sendMessage(client, to, message) {
 
     client.say(to, color.green('MEETUP: ') + color.red(message));
     console.log('MEETUP: sendMessage:', to, message);
+}
+
+function help() {
+    return (
+        color.green('HELP: meetup')
+    );
+}
+
+module.exports = {
+    init: init,
+    help: help
 }
