@@ -21,7 +21,12 @@ Plugins
 
 ### RSS Feeds
 
-!rss : print status (ON or OFF) !rss on : activate channel news posting !rss off : deactivate channel news posting !rss lastest : get latest news !rss lastest 5 : get the 5 latest news !rss feeds : list all feeds
+-	!rss : print status (ON or OFF)
+-	!rss on : activate channel news posting
+-	!rss off : deactivate channel news posting
+-	!rss lastest : get latest news
+-	!rss lastest 5 : get the 5 latest news
+-	!rss feeds : list all feeds
 
 ### Hello
 
