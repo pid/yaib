@@ -42,7 +42,7 @@ function init(client, config) {
 
             request(url, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    url += ' ' + cheerio.load(body)('title').text();
+                    url += ' ' + cheerio.load(body)('title').text().replace(/(\r\n|\n|\r)/gm,"");
                 }
 
                 db.put('urls\x00' + puid.generate(), url, function (err) {

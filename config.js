@@ -34,7 +34,7 @@ module.exports = {
         urls: true,
         rss: {
             // only activ in this channels
-            channels: [ '#stuttgartjs-links'], // empty than all allowed
+            channels: [ '#stuttgartjs-links', '#stuttgartjs'], // empty than all allowed
             //channels: ['#stuttgartjs-links'], // empty than all allowed
             limit: 42, // limit for rss latest
             feeds: [
@@ -104,7 +104,7 @@ module.exports = {
                 //
                 'http://ponyfoo.com/articles/feed',
                 //
-                'http://news.google.de/news?pz=1&cf=all&ned=de&hl=de&topic=t&output=rss',
+                // 'http://news.google.de/news?pz=1&cf=all&ned=de&hl=de&topic=t&output=rss',
                 //
                 'http://www.planetnodejs.com/feed',
                 //

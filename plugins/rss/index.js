@@ -79,7 +79,7 @@ function init(client, config) {
 
                 config.plugins.rss.feeds.forEach(function (feed) {
 
-                    client.say(to, feed);
+                    client.say(to, "RSS FEED: " + feed);
                 });
 
                 break;
