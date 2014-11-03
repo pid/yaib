@@ -60,21 +60,13 @@ function init(client, config) {
 
         var cmdline = utils.filterCommands(message);
 
-        if (!utils.isCmd('!rss', cmdline) ||
-            nick.toLowerCase() === config.irc.nickname.toLowerCase() ||
-            (config.plugins.rss.channels.length !== 0 &&
-                to[0] === '#' &&
-                !config.plugins.rss.channels.some(function (el) {
-                    return el == to;
-                }))) {
-
+        if (!utils.isCmd('!rss', cmdline) || utils.isBotMessage(nick, config)) {
             // console.log('RSS: command canceld (2)');
-
             return;
         }
 
         if (utils.isBotMessage(to, config)) {
-            
+
             maxLimit = 4242;
             to = nick;
         }
@@ -85,12 +77,12 @@ function init(client, config) {
 
             case 'feeds':
 
-                    config.plugins.rss.feeds.forEach(function (feed) {
+                config.plugins.rss.feeds.forEach(function (feed) {
 
-                        client.say(to, feed);
-                    });
+                    client.say(to, feed);
+                });
 
-                    break;
+                break;
 
             case 'import':
 
@@ -124,21 +116,31 @@ function init(client, config) {
 
             case 'on':
 
-                status = true;
-                printStatus(client, to, status);
+                if (config.plugins.rss.channels.indexOf(to) === -1) {
+                    config.plugins.rss.channels.push(to);
+                }
+                console.dir(config.plugins.rss.channels);
+                printStatus(client, to, true);
 
                 break;
 
             case 'off':
-
-                status = false;
-                printStatus(client, to, status);
+                if (config.plugins.rss.channels.indexOf(to) !== -1) {
+                    config.plugins.rss.channels.splice(config.plugins.rss.channels.indexOf(to), 1);
+                }
+                console.dir(config.plugins.rss.channels);
+                printStatus(client, to, false);
 
                 break;
 
             default:
+                if (config.plugins.rss.channels.indexOf(to) !== -1) {
+                    printStatus(client, to, true);
+                } else {
+                    printStatus(client, to, false);
+                }
+                console.dir(config.plugins.rss.channels);
 
-                printStatus(client, to, status);
                 break;
         }
     });

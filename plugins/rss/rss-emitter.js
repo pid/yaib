@@ -1,5 +1,3 @@
-
-
 (function () {
     var EventEmitter, RssEmitter, feedparser, levelup, request, Puid, puid,
         __hasProp = {}.hasOwnProperty,
@@ -38,30 +36,37 @@
 
         RssEmitter.prototype["import"] = function (url) {
             var fp, pipe, req, self;
-            fp = new feedparser({
-                addmeta: false
-            });
-            self = this;
-            req = request(url);
-            pipe = req.pipe(fp);
+            try {
 
-            return pipe.on('readable', function () {
-                var item;
-
-                item = this.read();
-                return self.db.get(item.guid, function (err, value) {
-                    if (err) {
-                        item.id = puid.generate();
-                        return self.db.put('id\x00' + item.id, item, function (err) {
-                            return self.db.put(item.guid, '{ "loaded": "true"}', function (err) {
-                                return self.emit('item:new', item);
-                            });
-                        });
-                    } else {
-                        return self.emit('item:skipped', item.guid);
-                    }
+                fp = new feedparser({
+                    addmeta: false
                 });
-            });
+                self = this;
+                req = request(url);
+
+                pipe = req.pipe(fp);
+
+                return pipe.on('readable', function () {
+                    var item;
+
+                    item = this.read();
+                    return self.db.get(item.guid, function (err, value) {
+                        if (err) {
+                            item.id = puid.generate();
+                            return self.db.put('id\x00' + item.id, item, function (err) {
+                                return self.db.put(item.guid, '{ "loaded": "true"}', function (err) {
+                                    return self.emit('item:new', item);
+                                });
+                            });
+                        } else {
+                            return self.emit('item:skipped', item.guid);
+                        }
+                    });
+                });
+
+            } catch (e) {
+                console.error(e);
+            }
         };
 
         return RssEmitter;
