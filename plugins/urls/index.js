@@ -2,6 +2,8 @@ console.log("PLUGIN: URLS loaded");
 
 var utils = require('../../lib/utils');
 var color = require('irc-colors');
+var cheerio = require('cheerio');
+var request = require('request');
 
 function init(client, config) {
 
@@ -37,11 +39,19 @@ function init(client, config) {
         }
 
         urls.forEach(function (url) {
-            db.put('urls\x00' + puid.generate(), url, function (err) {
 
-                if (err) {
-                    console.log("ERROR: URLS: adding new url");
+            request(url, function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    url += ' ' + cheerio.load(body)('title').text();
                 }
+
+                db.put('urls\x00' + puid.generate(), url, function (err) {
+
+                    if (err) {
+                        console.log("ERROR: URLS: adding new url");
+                    }
+                });
+
             });
         });
 
