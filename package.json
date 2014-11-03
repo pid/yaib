@@ -1,30 +1,34 @@
 {
-    "name": "ircbot",
-    "privat": true,
-    "version": "0.0.2",
-    "description": "StuttgartJS IrcBot",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "ircbot",
+  "privat": true,
+  "version": "0.0.2",
+  "description": "StuttgartJS IrcBot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "contributors": [
+    {
+      "name": "Sascha Droste",
+      "email": "pid@posteo.net",
+      "url": "http://github.com/pid"
     },
-    "contributors": [{
-        "name": "Sascha Droste",
-        "email": "pid@posteo.net",
-        "url": "http://github.com/pid"
-    }, {
-        "name": "John Doe",
-        "email": "john.doe@example.com",
-        "url": "http://gwww.example.com"
-    }],
-    "license": "MIT",
-    "dependencies": {
-        "feedparser": "~0.16.1",
-        "irc": "^0.3.7",
-        "irc-colors": "^1.1.0",
-        "leveldown": "0.x.x",
-        "levelup": "~0.19.0",
-        "lodash": "^2.4.1",
-        "puid": "^1.0.0",
-        "request": "~2.25.0"
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "url": "http://gwww.example.com"
     }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.17.0",
+    "feedparser": "~0.16.1",
+    "irc": "^0.3.7",
+    "irc-colors": "^1.1.0",
+    "leveldown": "0.x.x",
+    "levelup": "~0.19.0",
+    "lodash": "^2.4.1",
+    "puid": "^1.0.0",
+    "request": "~2.25.0"
+  }
 }
