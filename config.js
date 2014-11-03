@@ -106,8 +106,9 @@ module.exports = {
                 //
                 'http://news.google.de/news?pz=1&cf=all&ned=de&hl=de&topic=t&output=rss',
                 //
-                'http://www.planetnodejs.com/feed'
+                'http://www.planetnodejs.com/feed',
                 //
+                'http://petithacks.com/feed.atom'
 
 
 
