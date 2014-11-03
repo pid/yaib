@@ -34,14 +34,17 @@ module.exports = {
         urls: true,
         rss: {
             // only activ in this channels
-            channels: ['#stuttgartjs', '#stuttgartjs-links'], // empty than all allowed
+            channels: [ '#stuttgartjs-links'], // empty than all allowed
             //channels: ['#stuttgartjs-links'], // empty than all allowed
             limit: 42, // limit for rss latest
             feeds: [
                 // echojs.com
                 'http://echojs.com/rss',
                 // heise.de
-                'http://heise.de.feedsportal.com/c/35207/f/653902/index.rss',
+                'http://www.heise.de/open/news/news-atom.xml',
+                'http://www.heise.de/security/news/news-atom.xml',
+                'http://www.techstage.de/rss.xml',
+                'http://www.heise.de/developer/rss/news-atom.xml',
                 // dailyjs.com
                 'http://feeds.feedburner.com/dailyjs?format=xml',
                 // t3n.de
@@ -69,11 +72,11 @@ module.exports = {
                 //
                 'http://www.silicon.de/feed/',
                 //
-                'http://www.drweb.de/magazin/category/javascript/feed/',
+                'http://www.drweb.de/magazin/feed/',
                 //
                 'http://feeds.feedburner.com/CssTricks',
-                // http://www.sitepoint.com/javascript/
-                'http://www.sitepoint.com/javascript/feed/',
+                // http://www.sitepoint.com/
+                'http://www.sitepoint.com/feed',
                 //
                 'http://ariya.ofilabs.com/feed',
                 //
@@ -85,7 +88,29 @@ module.exports = {
                 //
                 'http://news.centurylinklabs.com/rss',
                 //
-                'http://howtonode.org/feed.xml'
+                'http://howtonode.org/feed.xml',
+                //
+                'http://marijnhaverbeke.nl/blog/feed.atom',
+                //
+                'http://www.geek-week.de/feed/',
+                //
+                'http://googlewebmastercentral.blogspot.com/atom.xml',
+                //
+                'http://www.seo-united.de/blog/feed',
+                //
+                'http://davidwalsh.name/feed',
+                //
+                'http://feeds.feedburner.com/TechCrunch/',
+                //
+                'http://ponyfoo.com/articles/feed',
+                //
+                'http://news.google.de/news?pz=1&cf=all&ned=de&hl=de&topic=t&output=rss',
+                //
+                'http://www.planetnodejs.com/feed'
+                //
+
+
+
 
             ]
         }
