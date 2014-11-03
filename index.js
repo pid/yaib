@@ -18,10 +18,9 @@ client.addListener('registered', function (raw) {
     console.log('REGISTERED: ', raw);
 
     process.env.IRCBOT_NICKSERV ?
-        client.say('NickServ', 'IDENTIFY ' + process.env.IRCBOT_NICKSERV) :
+        client.say('NickServ', 'identify ' + process.env.IRCBOT_NICKSERV) :
         console.log('WARNING: IRCBOT NICKSERV PASSWORD missing - set env IRCBOT_NICKSERV');
 });
-
 
 // load plugins
 plugins.forEach(function (plugin) {
