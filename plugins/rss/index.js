@@ -6,8 +6,6 @@ var color = require('irc-colors');
 
 function init(client, config) {
 
-    var status = true; // online/offline = true/false
-
     var timer = 0;
 
     var limit = 1;
@@ -24,10 +22,6 @@ function init(client, config) {
     var emitter = new RssEmitter(db);
 
     emitter.on('item:new', function (item) {
-
-        if (!status) {
-            return;
-        }
 
         if (!config.plugins.rss.channels.length) {
             channels = config.irc.options.channels;
