@@ -14,7 +14,7 @@ function init(client, config) {
     var RssEmitter = require('./rss-emitter');
 
     var levelup = require('levelup');
-    var db = levelup(__dirname + '/data', {
+    var db = levelup(__dirname + '/../../data/rss/', {
         keyEncoding: 'binary',
         valueEncoding: 'json'
     });
