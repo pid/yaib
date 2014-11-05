@@ -37,15 +37,16 @@ function init(client, config) {
 
     client.addListener('ping', function (raw) {
 
-        console.log("RSS: pinged", raw, "Timer:", timer, new Date(Date.now()));
+        !!process.env.IRCBOT_DEBUG && console.log("RSS: pinged", raw, "Timer:", timer, new Date(Date.now()));
+
         if (timer) {
             timer -= 1;
             return;
         }
-        timer = 7;
+        timer = config.plugins.rss.timer || 7;
 
         config.plugins.rss.feeds.forEach(function (feed) {
-            console.log("FEED IMPORT(cron):", feed);
+            !!process.env.IRCBOT_DEBUG && console.log("FEED IMPORT(cron):", feed);
             emitter.import(feed);
         });
     });
@@ -55,7 +56,7 @@ function init(client, config) {
         var cmdline = utils.filterCommands(message);
 
         if (!utils.isCmd('!rss', cmdline) || utils.isBotMessage(nick, config)) {
-            // console.log('RSS: command canceld (2)');
+            !!process.env.IRCBOT_DEBUG && console.log('RSS: command canceld (2)');
             return;
         }
 
@@ -65,7 +66,7 @@ function init(client, config) {
             to = nick;
         }
 
-        console.log("RSS CMD:", nick, to, message, raw);
+        !!process.env.IRCBOT_DEBUG && console.log("RSS CMD:", nick, to, message, raw);
 
         switch (cmdline[1]) {
 
@@ -82,7 +83,7 @@ function init(client, config) {
 
                 config.plugins.rss.feeds.forEach(function (feed) {
 
-                    console.log("FEED IMPORT:", feed);
+                    !!process.env.IRCBOT_DEBUG && console.log("FEED IMPORT:", feed);
                     emitter.import(feed);
                 });
 
@@ -101,7 +102,7 @@ function init(client, config) {
 
                         db.get(data, function (err, item) {
 
-                            //console.dir(item);
+                            //!!process.env.IRCBOT_DEBUG && console.dir(item);
                             sendMessage(client, to, item);
                         });
                     });
@@ -113,7 +114,8 @@ function init(client, config) {
                 if (config.plugins.rss.channels.indexOf(to) === -1) {
                     config.plugins.rss.channels.push(to);
                 }
-                console.dir(config.plugins.rss.channels);
+
+                //!!process.env.IRCBOT_DEBUG && console.dir(config.plugins.rss.channels);
                 printStatus(client, to, true);
 
                 break;
@@ -122,7 +124,8 @@ function init(client, config) {
                 if (config.plugins.rss.channels.indexOf(to) !== -1) {
                     config.plugins.rss.channels.splice(config.plugins.rss.channels.indexOf(to), 1);
                 }
-                console.dir(config.plugins.rss.channels);
+
+                //!!process.env.IRCBOT_DEBUG && console.dir(config.plugins.rss.channels);
                 printStatus(client, to, false);
 
                 break;
@@ -133,7 +136,7 @@ function init(client, config) {
                 } else {
                     printStatus(client, to, false);
                 }
-                console.dir(config.plugins.rss.channels);
+                !!process.env.IRCBOT_DEBUG && console.dir(config.plugins.rss.channels);
 
                 break;
         }
@@ -160,13 +163,13 @@ function help() {
 function printStatus(client, to, status) {
 
     client.say(to, color.green('RSS: ') + (status ? color.red('ON') : color.blue('OFF')));
-    console.log('RSS: printStatus:', to, (status ? 'ON' : 'OFF'));
+    !!process.env.IRCBOT_DEBUG && console.log('RSS: printStatus:', to, (status ? 'ON' : 'OFF'));
 }
 
 function sendMessage(client, to, item) {
 
     client.say(to, color.green('RSS: ') + color.brown(item.title) + ' --- ' + item.link);
-    console.log('RSS: sendMessage:', to, item.title);
+    !!process.env.IRCBOT_DEBUG && console.log('RSS: sendMessage:', to, item.title);
 }
 
 module.exports = {
