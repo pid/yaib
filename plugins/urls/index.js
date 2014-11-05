@@ -8,7 +8,7 @@ var request = require('request');
 function init(client, config) {
 
     var levelup = require('levelup');
-    var db = levelup(__dirname + '/data', {
+    var db = levelup(__dirname + '/../../data/urls/', {
         keyEncoding: 'binary'
     });
     var Puid = require('puid');
@@ -48,7 +48,7 @@ function init(client, config) {
                 db.put('urls\x00' + puid.generate(), url, function (err) {
 
                     if (err) {
-                        console.log("ERROR: URLS: adding new url");
+                        !!process.env.IRCBOT_DEBUG && console.log("ERROR: URLS: adding new url");
                     }
                 });
 

@@ -60,7 +60,7 @@ function init(client, config) {
 function sendMessage(client, to, message) {
 
     client.say(to, color.green('MEETUP: ') + color.red(message));
-    console.log('MEETUP: sendMessage:', to, message);
+    !!process.env.IRCBOT_DEBUG && console.log('MEETUP: sendMessage:', to, message);
 }
 
 function help() {

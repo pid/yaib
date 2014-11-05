@@ -43,6 +43,7 @@
                 });
                 self = this;
                 req = request(url);
+                !!process.env.IRCBOT_DEBUG && console.log("REQUEST:",url);
 
                 pipe = req.pipe(fp);
 
