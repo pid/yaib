@@ -1,7 +1,7 @@
 var fs = require('fs');
 var irc = require('irc');
 
-var config = require('./config');
+var config = require('./config' + (process.env.NODE_ENV === 'production' ? '.production' : ''));
 var plugins = fs.readdirSync('./plugins');
 
 var client = new irc.Client(
@@ -15,11 +15,11 @@ client.addListener('error', function (error) {
 });
 
 client.addListener('registered', function (raw) {
-    console.log('REGISTERED: ', raw);
+    !!process.env.IRCBOT_DEBUG && console.log('REGISTERED: ', raw);
 
     process.env.IRCBOT_NICKSERV ?
         client.say('NickServ', 'identify ' + process.env.IRCBOT_NICKSERV) :
-        console.log('WARNING: IRCBOT NICKSERV PASSWORD missing - set env IRCBOT_NICKSERV');
+        console.error('WARNING: IRCBOT NICKSERV PASSWORD missing - set env IRCBOT_NICKSERV');
 });
 
 // load plugins
