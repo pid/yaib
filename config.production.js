@@ -39,10 +39,10 @@ module.exports = {
         */
 
         urls: true,
-        //* for stuttgartjs
+        /* for stuttgartjs
         rss: {
             // only activ in this channels
-            channels: ['#stuttgartjs'], // empty than all allowed
+            channels: ['#StuttgartJS'], // empty than all allowed
             //channels: ['#StuttgartJS', '#StuttgartJS-Links'],
             limit: 42, // limit for rss latest
             timer: 30,  // after 30 pings check feeds ~60min
@@ -61,8 +61,7 @@ module.exports = {
 
         rss: {
             // only activ in this channels
-            channels: ['#pidtest'], // empty than all allowed
-            //channels: ['#StuttgartJS', '#StuttgartJS-Links'],
+            channels: ['#StuttgartJS-Links'],
             limit: 42, // limit for rss latest
             timer: 3,  // after 3 pings check feeds
             feeds: [
@@ -135,7 +134,7 @@ module.exports = {
                 'http://news.google.de/news?pz=1&cf=all&ned=de&hl=de&topic=t&output=rss',
                 //
                 'http://www.planetnodejs.com/feed',
-                // 'http://petithacks.com/feed.atom',
+                //
                 'http://www.reddit.com/r/node/.rss',
                 //
                 'https://www.joyent.com/blog/feed',
