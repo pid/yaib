@@ -10,8 +10,8 @@ module.exports = {
             showErrors: false,
             autoRejoin: true,
             autoConnect: true,
-            //channels: ['#StuttgartJS', '#StuttgartJS-Links'],
-            channels: ['#pidtest', '#pidtest2'],
+            channels: ['#StuttgartJS', '#StuttgartJS-Links'],
+            // channels: ['#pidtest', '#pidtest2'],
             secure: true,
             selfSigned: false,
             certExpired: false,
@@ -39,7 +39,7 @@ module.exports = {
         */
 
         urls: true,
-        /* for stuttgartjs
+        //* for stuttgartjs
         rss: {
             // only activ in this channels
             channels: ['#stuttgartjs'], // empty than all allowed

@@ -1,7 +1,7 @@
 module.exports = {
     irc: {
         server: 'irc.freenode.net',
-        nickname: 'stgtjs',
+        nickname: 'stgtjs-dev',
         options: {
             userName: 'StgtJS',
             realName: 'StuttgartJS ircbot',
