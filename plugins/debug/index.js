@@ -18,7 +18,12 @@ function init(client, config) {
         }
     });
 
-};
+    /*/
+    client.addListener('raw', function (message) {
+            console.log("DEBUG RAW EVENT:", message);
+    });
+    //*/
+}
 
 function help() {
     return (
@@ -33,4 +38,4 @@ function help() {
 module.exports = {
     init: init,
     help: help
-}
+};
