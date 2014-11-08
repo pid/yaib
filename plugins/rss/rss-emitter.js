@@ -1,3 +1,4 @@
+/*jshint -W030 */
 (function () {
     var EventEmitter, RssEmitter, feedparser, levelup, request, Puid, puid,
         __hasProp = {}.hasOwnProperty,
@@ -20,7 +21,7 @@
 
     request = require('request');
 
-    feedparser = require('feedparser');
+    Feedparser = require('feedparser');
 
     levelup = require('levelup');
 
@@ -38,7 +39,7 @@
             var fp, pipe, req, self;
             try {
 
-                fp = new feedparser({
+                fp = new Feedparser({
                     addmeta: false
                 });
                 self = this;
