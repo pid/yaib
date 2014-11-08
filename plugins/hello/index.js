@@ -9,14 +9,14 @@ function init(client, config) {
 
         if (!utils.isBotMessage(nick, config)) {
             client.say(channel,
-                config.plugins.hello.salutation + ' ' +
+                (config.plugins.hello.salutation ? config.plugins.hello.salutation : 'Hi') + ' ' +
                 nick + '!  ' +
-                config.plugins.hello.message
+                (config.plugins.hello.message ? config.plugins.hello.message : 'Send !help to me.')
             );
         }
     });
 
-};
+}
 
 function help() {
     return (
@@ -31,4 +31,4 @@ function help() {
 module.exports = {
     init: init,
     help: help
-}
+};
