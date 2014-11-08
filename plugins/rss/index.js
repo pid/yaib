@@ -1,3 +1,5 @@
+/*jshint -W030 */
+
 console.log("PLUGIN: RSS loaded");
 
 var utils = require('../../lib/utils');
@@ -168,11 +170,11 @@ function printStatus(client, to, status) {
 
 function sendMessage(client, to, item) {
 
-    client.say(to, color.green('RSS: ') + color.brown(item.title) + ' --- ' + item.link);
+    client.say(to, color.green('RSS: ') + color.bold.brown(item.title) + ' --- -- - ' + item.link);
     !!process.env.IRCBOT_DEBUG && console.log('RSS: sendMessage:', to, item.title);
 }
 
 module.exports = {
     init: init,
     help: help
-}
+};
