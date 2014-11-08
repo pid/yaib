@@ -1,9 +1,9 @@
 module.exports = {
     irc: {
         server: 'irc.freenode.net',
-        nickname: 'stgtjs',
+        nickname: 'StgtJS-DEV',
         options: {
-            userName: 'StgtJS',
+            userName: 'StgtJS-DEV',
             realName: 'StuttgartJS ircbot',
             port: 7070,
             debug: false,
@@ -29,7 +29,7 @@ module.exports = {
 
         debug: true,
 
-        hello: false,
+        hello: true,
         /*
         hello: {
             salutation: 'Welcome, ',
@@ -132,7 +132,7 @@ module.exports = {
                 //
                 'http://ponyfoo.com/articles/feed',
                 //
-                'http://news.google.de/news?pz=1&cf=all&ned=de&hl=de&topic=t&output=rss',
+                //'http://news.google.de/news?pz=1&cf=all&ned=de&hl=de&topic=t&output=rss',
                 //
                 'http://www.planetnodejs.com/feed',
                 // 'http://petithacks.com/feed.atom',
@@ -142,7 +142,19 @@ module.exports = {
                 //
                 'http://readwrite.com/rss.xml',
                 //
-                'http://www.bhorowitz.com/blog.rss'
+                'http://www.bhorowitz.com/blog.rss',
+                //
+                'http://scotch.io/feed',
+                //
+                'http://www.onlinemarketingrockstars.de/feed/',
+                //
+                'http://www.netzaktiv.de/feed/',
+                //
+                'http://eisenbergeffect.bluespire.com/rss/',
+                //
+                'http://www.gizmodo.de/feed',
+                //
+                'http://jsforallof.us/feed.xml'
 
             ]
             // */
