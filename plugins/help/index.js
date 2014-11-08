@@ -2,12 +2,14 @@ console.log("PLUGIN: HELP loaded");
 
 var utils = require('../../lib/utils');
 var color = require('irc-colors');
-var fs = require('fs');
-var helper = {};
+var pkg = require('../../package.json');
 
 function init(client, config) {
 
+    var fs = require('fs');
+
     var plugins = fs.readdirSync(__dirname + '/../../plugins');
+    var helper = {};
 
     plugins.forEach(function (plugin) {
 
@@ -31,6 +33,7 @@ function init(client, config) {
 
             client.say(nick,
                 color.bold.red.bgyellow('=============================\n') +
+                color.bold.red.bgyellow('YAIB - v' + pkg.version + ' ' + pkg.homepage + '\n') +
                 color.bold.red.bgyellow('!help : All ircbot functions\n') +
                 color.bold.red.bgyellow('=============================')
             );
@@ -48,7 +51,7 @@ function init(client, config) {
             ));
         }
     });
-};
+}
 
 function help() {
     return (
@@ -63,4 +66,4 @@ function help() {
 module.exports = {
     init: init,
     help: help
-}
+};
