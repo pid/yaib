@@ -1,3 +1,4 @@
+/*jshint -W030 */
 console.log("PLUGIN: MEETUP loaded");
 
 var utils = require('../../lib/utils');
@@ -76,4 +77,4 @@ function help() {
 module.exports = {
     init: init,
     help: help
-}
+};
