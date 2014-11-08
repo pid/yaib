@@ -74,7 +74,7 @@ function init(client, config) {
                 });
         }
     });
-};
+}
 
 function help() {
     return (
@@ -95,4 +95,4 @@ function sendMessage(client, to, message) {
 module.exports = {
     init: init,
     help: help
-}
+};
