@@ -70,7 +70,8 @@ function init(client, config) {
 
         !!process.env.IRCBOT_DEBUG && console.log("RSS CMD:", nick, to, message, raw);
 
-        switch (cmdline[1]) {
+
+        switch (cmdline.length > 1 && cmdline[1] ? cmdline[1].toString().toLowerCase() : '') {
 
             case 'feeds':
 
