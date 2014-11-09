@@ -7,11 +7,11 @@
                 if (__hasProp.call(parent, key)) child[key] = parent[key];
             }
 
-            function ctor() {
+            function Ctor() {
                 this.constructor = child;
             }
-            ctor.prototype = parent.prototype;
-            child.prototype = new ctor();
+            Ctor.prototype = parent.prototype;
+            child.prototype = new Ctor();
             child.__super__ = parent.prototype;
             return child;
         };
@@ -20,12 +20,10 @@
     puid = new Puid(true);
 
     request = require('request');
-
     Feedparser = require('feedparser');
-
     levelup = require('levelup');
-
     EventEmitter = require('events').EventEmitter;
+    url = require('url');
 
     RssEmitter = (function (_super) {
 
@@ -57,6 +55,7 @@
                             item.id = puid.generate();
                             return self.db.put('id\x00' + item.id, item, function (err) {
                                 return self.db.put(item.guid, '{ "loaded": "true"}', function (err) {
+                                    !!process.env.IRCBOT_DEBUG && console.log("RSS: new", item);
                                     return self.emit('item:new', item);
                                 });
                             });
