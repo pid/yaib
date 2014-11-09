@@ -152,9 +152,9 @@ module.exports = {
                 //
                 'http://eisenbergeffect.bluespire.com/rss/',
                 //
-                'http://www.gizmodo.de/feed',
+                'http://www.gizmodo.de/feed'
                 //
-                'http://jsforallof.us/feed.xml'
+                // 'http://jsforallof.us/feed.xml'
 
             ]
             // */
