@@ -153,7 +153,11 @@ module.exports = {
                 //
                 'http://www.gizmodo.de/feed',
                 //
-                // removed issue with link/guid field 'http://jsforallof.us/feed.xml'
+                'http://javascriptweekly.com/rss/18em492a',
+                //
+                'http://mobilewebweekly.co/rss/1cd436ic',
+                //
+                'http://jsforallof.us/feed.xml'
 
 
             ]
